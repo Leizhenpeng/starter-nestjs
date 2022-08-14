@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 import * as requestIp from 'request-ip';
 import { AppModule } from './app.module';
 
