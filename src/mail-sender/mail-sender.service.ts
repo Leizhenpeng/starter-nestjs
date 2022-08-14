@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { createTransport } from 'nodemailer';
-import * as Mail from 'nodemailer/lib/mailer';
+import Mail from 'nodemailer/lib/mailer';
 
 import config from '../config';
 import {
