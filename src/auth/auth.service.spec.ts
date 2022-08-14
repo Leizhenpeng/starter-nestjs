@@ -6,6 +6,7 @@ import { MailSenderService } from '../mail-sender/mail-sender.service';
 import { UserService } from '../user/user.service';
 import config from '../config';
 import { PrismaService } from '../common/services/prisma.service';
+import { getRedisToken } from '@liaoliaots/nestjs-redis';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -14,6 +15,9 @@ describe('AuthService', () => {
   let spyUserService: UserService;
   let spyJwtService: JwtService;
   let spyPrismaService: MockProxy<PrismaService>;
+  let get: jest.Mock;
+  let set: jest.Mock;
+  let del: jest.Mock;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -32,6 +36,14 @@ describe('AuthService', () => {
         {
           provide: PrismaService,
           useFactory: () => mockDeep<PrismaService>(),
+        },
+        {
+          provide: getRedisToken('default'),
+          useValue: {
+            get,
+            set,
+            del,
+          },
         },
       ],
     }).compile();

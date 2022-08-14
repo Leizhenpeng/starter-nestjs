@@ -8,15 +8,20 @@ import { ThrottlerBehindProxyGuard } from './common/guards/throttler-behind-prox
 import { AppController } from './app.controller';
 import { LoggerModule } from 'nestjs-pino';
 import config from '@/config';
+import { RedisModule } from '@liaoliaots/nestjs-redis';
+import { RedisConfigService } from './common/services/redis-config.service';
 
 @Module({
   imports: [
+    LoggerModule.forRoot({
+      ...config.pino,
+    }),
+    RedisModule.forRootAsync({
+      useClass: RedisConfigService,
+    }),
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 50,
-    }),
-    LoggerModule.forRoot({
-      ...config.pino,
     }),
     UserModule,
     AuthModule,
