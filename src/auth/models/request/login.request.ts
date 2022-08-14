@@ -1,11 +1,17 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, MinLength } from 'class-validator';
 
 export class LoginRequest {
+  /**
+   * user email or username
+   * @example 'river'
+   */
   @IsNotEmpty()
-  // username or email
   identifier: string;
 
+  /**
+   * user password
+   * @example '88888888'
+   */
   @IsNotEmpty()
   @MinLength(8)
   password: string;

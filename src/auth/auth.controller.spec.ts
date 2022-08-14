@@ -8,11 +8,14 @@ import { UserService } from '../user/user.service';
 import config from '../config';
 import { PrismaService } from '../common/services/prisma.service';
 import { LoggerModule } from 'nestjs-pino';
+import { getRedisToken } from '@liaoliaots/nestjs-redis';
 
 describe('Auth Controller', () => {
   let controller: AuthController;
   let spyService: AuthService;
-
+  let get: jest.Mock;
+  let set: jest.Mock;
+  let del: jest.Mock;
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
@@ -28,7 +31,20 @@ describe('Auth Controller', () => {
         }),
         PassportModule.register({ defaultStrategy: 'jwt' }),
       ],
-      providers: [AuthService, MailSenderService, UserService, PrismaService],
+      providers: [
+        AuthService,
+        MailSenderService,
+        UserService,
+        PrismaService,
+        {
+          provide: getRedisToken('default'),
+          useValue: {
+            get,
+            set,
+            del,
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
@@ -39,4 +55,5 @@ describe('Auth Controller', () => {
     expect(controller).toBeDefined();
     expect(spyService).toBeDefined();
   });
+  
 });
