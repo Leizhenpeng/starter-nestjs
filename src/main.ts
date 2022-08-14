@@ -10,6 +10,7 @@ import config from './config';
 
 async function bootstrap() {
   // CORS is enabled
+  await logoShow();
   const app = await NestFactory.create(AppModule, { cors: true });
 
   const logger = app.get(Logger);
@@ -24,7 +25,7 @@ async function bootstrap() {
   if (!isProduction()) {
     await repl(AppModule);
   }
-  // // Swagger API Documentation
+  //Swagger API Documentation
   if (!isProduction()) {
     {
       const options = new DocumentBuilder()
@@ -53,6 +54,4 @@ async function bootstrap() {
   }
 }
 
-bootstrap().then(() => {
-  logoShow();
-});
+bootstrap();
