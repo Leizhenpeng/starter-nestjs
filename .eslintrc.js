@@ -20,5 +20,16 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+
+    '@typescript-eslint/member-ordering': 'error',
+    '@typescript-eslint/no-duplicate-imports': 'error',
+    '@typescript-eslint/no-require-imports': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+      },
+    ],
+    '@typescript-eslint/strict-boolean-expressions': 'off',
   },
 };
