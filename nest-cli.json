@@ -5,9 +5,10 @@
   "compilerOptions": {
     "plugins": [
       {
-        "name": "@nestjs/swagger/plugin",
+        "name": "@nestjs/swagger", 
         "options": {
-          "dtoFileNameSuffix": [".model.ts", ".request.ts", ".response.ts"]
+          "dtoFileNameSuffix": [".model.ts", ".request.ts", ".response.ts"],
+          "introspectComments": true
         }
       }
     ]

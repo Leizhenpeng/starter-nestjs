@@ -7,6 +7,7 @@ import { MailSenderService } from '../mail-sender/mail-sender.service';
 import { UserService } from '../user/user.service';
 import config from '../config';
 import { PrismaService } from '../common/services/prisma.service';
+import { LoggerModule } from 'nestjs-pino';
 
 describe('Auth Controller', () => {
   let controller: AuthController;
@@ -16,6 +17,9 @@ describe('Auth Controller', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       imports: [
+        LoggerModule.forRoot({
+          ...config.pino,
+        }),
         JwtModule.register({
           secret: config.jwt.secretOrKey,
           signOptions: {

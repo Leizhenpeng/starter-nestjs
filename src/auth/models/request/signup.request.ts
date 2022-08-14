@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
@@ -7,11 +8,20 @@ import {
   MinLength,
 } from 'class-validator';
 
+// https://docs.nestjs.com/openapi/cli-plugin#cli-plugin
 export class SignupRequest {
+  /**
+   * A user email
+   * @example 'rivers@gmail.com'
+   */
   @IsNotEmpty()
   @IsEmail()
   email: string;
 
+  /**
+   * A username
+   * @example 'river'
+   */
   @IsNotEmpty()
   // alphanumeric characters and - are valid
   // you can change this as you like

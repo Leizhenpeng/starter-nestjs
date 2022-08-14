@@ -51,7 +51,6 @@ async function bootstrap() {
       `Download swagger-json at ${url}/${process.env.APP_DOC_PATH}-json`,
     );
   }
-
 }
 
 bootstrap().then(() => {
