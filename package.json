@@ -15,6 +15,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "dotenv -e env/local.env -- nest start",
     "start:dev": "dotenv -e env/local.env -- nest start --watch",
+    "start:repl": "dotenv -e env/local.env -- nest start --watch -- --entryFile repl",
     "start:debug": "dotenv -e env/local.env -- nest start --debug --watch",
     "start:prod": "dotenv -e env/production.env -- node dist/src/main",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",

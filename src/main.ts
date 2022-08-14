@@ -1,5 +1,5 @@
-import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
+import { NestFactory, repl } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 import * as requestIp from 'request-ip';
@@ -7,9 +7,12 @@ import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
 import { isProduction, logoShow } from './common/utils';
 import config from './config';
+
 async function bootstrap() {
   // CORS is enabled
   const app = await NestFactory.create(AppModule, { cors: true });
+  await repl(AppModule);
+
   const logger = app.get(Logger);
   app.useLogger(logger);
   // Request Validation
