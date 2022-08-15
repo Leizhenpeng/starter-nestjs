@@ -54,20 +54,22 @@ export default {
     // refer https://github.com/pinojs/pino-http#logger-options
     pinoHttp: {
       // refer https://github.com/pinojs/pino-pretty#cliargs
+      // https://github.com/pinojs/pino-pretty/blob/429d5f187e2081138b89583ff954a910085ea0f3/test/lib/utils.public.test.js
       level: 'info',
-      // autoLogging: false,
+      autoLogging: true,
       transport: {
         target: 'pino-pretty',
         options: {
           colorize: true,
-          levelFirst: true,
-          translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l TT Z',
-          // ignore: 'pid,hostname,req.headers,req',
-          singleLine: false,
+          levelFirst: false,
+          translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
+          ignore: 'pid,hostname,req.headers,req,context',
+          // singleLine: true,
+          messageFormat: '🚀 {context} 🚀 {msg}',
         },
       },
 
-      useLevelLabels: false,
+      useLevelLabels: true,
       serializers: {
         req: (req) =>
           R.evolve(

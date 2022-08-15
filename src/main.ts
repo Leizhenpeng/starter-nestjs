@@ -1,20 +1,26 @@
 import { NestFactory, repl } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, Logger as LoggerBuild } from '@nestjs/common';
 import helmet from 'helmet';
 import * as requestIp from 'request-ip';
 import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
-import { isProduction, logoShow } from './common/utils';
+import { isProduction, isTest, logoShow } from './common/utils';
 import config from './config';
+
+const loggerInit = new LoggerBuild('InitProject');
 
 async function bootstrap() {
   // CORS is enabled
   await logoShow();
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+    bufferLogs: true,
+  });
 
   const logger = app.get(Logger);
   app.useLogger(logger);
+
   // Request Validation
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
@@ -22,7 +28,7 @@ async function bootstrap() {
 
   // Helmet Middleware against known security vulnerabilities
   app.use(helmet());
-  if (!isProduction()) {
+  if (isTest()) {
     await repl(AppModule);
   }
   //Swagger API Documentation
@@ -41,14 +47,15 @@ async function bootstrap() {
 
   await app.listen(~~(process.env.APP_PORT || 3000), '0.0.0.0');
   const url = await app.getUrl();
-  logger.log(`Now env of app : ${process.env.NODE_ENV}`);
-  logger.log(`Application is running on: ${url}`);
+
+  loggerInit.log(`Now env of app : ${process.env.NODE_ENV}`);
+  loggerInit.log(`Application is running on: ${url}`);
 
   if (!isProduction()) {
-    logger.log(
+    loggerInit.log(
       `Please visit swagger document at ${url}/${process.env.APP_DOC_PATH}`,
     );
-    logger.log(
+    loggerInit.log(
       `Download swagger-json at ${url}/${process.env.APP_DOC_PATH}-json`,
     );
   }
