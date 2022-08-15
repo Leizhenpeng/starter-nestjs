@@ -1,4 +1,4 @@
-# Nest Hackathon Starter <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" height="28px" alt="Nest Logo"/></a>
+# Starter-Nestjs  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" height="22px" alt="Nest Logo"/></a>
 
 
 
