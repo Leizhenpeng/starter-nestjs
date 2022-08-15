@@ -1,3 +1,4 @@
+import { SocketService } from './socket.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { SocketGateway } from './socket.gateway';
 
@@ -6,7 +7,7 @@ describe('SocketGateway', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [SocketGateway],
+      providers: [SocketGateway, SocketService],
     }).compile();
 
     gateway = module.get<SocketGateway>(SocketGateway);

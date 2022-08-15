@@ -64,7 +64,7 @@ export default {
           levelFirst: false,
           translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
           ignore: 'pid,hostname,req.headers,req,context',
-          // singleLine: true,
+          singleLine: true,
           messageFormat: '🚀 {context} 🚀 {msg}',
         },
       },
