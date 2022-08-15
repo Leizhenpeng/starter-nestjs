@@ -10,6 +10,7 @@ import { LoggerModule } from 'nestjs-pino';
 import config from '@/config';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { RedisConfigService } from './common/services/redis-config.service';
+import { SocketModule } from './socket/socket.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { RedisConfigService } from './common/services/redis-config.service';
     UserModule,
     AuthModule,
     MailSenderModule,
+    SocketModule,
   ],
   providers: [
     {

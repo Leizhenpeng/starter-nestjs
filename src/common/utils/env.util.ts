@@ -19,5 +19,6 @@ export const isStaging = () => isEqual(EAppEnv.STAGING);
 export const isDev = () => isEqual(EAppEnv.DEVELOP);
 
 export const isLocal = () => isEqual(EAppEnv.LOCAL);
+export const isTest = () => isEqual(EAppEnv.TEST);
 
 export const isUTA = () => isEqual(EAppEnv.UTA);
