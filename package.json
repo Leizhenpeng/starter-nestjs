@@ -26,11 +26,13 @@
     "migrate:dev": "dotenv -e env/local.env -- prisma migrate dev --preview-feature",
     "migrate:dev:create": "dotenv -e env/local.env -- prisma migrate dev --create-only --preview-feature",
     "migrate:dev:pull": "dotenv -e env/local.env -- prisma db pull",
+    "migrate:seed": "dotenv -e .env.dev prisma db seed",
     "migrate:reset": "dotenv -e env/local.env -- prisma migrate reset --preview-feature",
     "migrate:deploy:prod": "dotenv -e env/production.env -- npx prisma migrate deploy --preview-feature",
     "migrate:deploy:dev": "dotenv -e env/dev.env -- npx prisma migrate deploy --preview-feature",
     "migrate:status": "npx prisma migrate status --preview-feature",
     "migrate:resolve": "npx prisma migrate resolve --preview-feature",
+    "prisma:format": "npx prisma format",
     "prisma:studio": "npx prisma studio",
     "prisma:generate": "npx prisma generate",
     "prisma:generate:watch": "npx prisma generate --watch",
@@ -153,5 +155,8 @@
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
