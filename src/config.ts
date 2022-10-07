@@ -65,7 +65,7 @@ export default {
           translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
           ignore: 'pid,hostname,req.headers,req,context',
           singleLine: true,
-          messageFormat: '🚀 {context} 🚀 {msg}',
+          messageFormat: '🚀{context}🚀{msg}',
         },
       },
 

@@ -1,4 +1,4 @@
-# Nest Hackathon Starter <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" height="28px" alt="Nest Logo"/></a>
+# Starter-Nestjs  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" height="22px" alt="Nest Logo"/></a>
 
 
 
@@ -12,23 +12,25 @@ You can also look at my [Angular Hackathon Starter](https://github.com/ahmetuysa
 
 1. **PostgreSQL with Prisma**
 
-2. **JWT Authentication**
+2. **Pino Logger**
 
-3. **Mail Verification**
+3. **Redis**
 
-4. **Mail Change**
+4. **socket-io**
 
-5. **Password Reset**
+5. **Request Validation**
+   
+6. **JWT Authentication**
+   
+7. **Swagger API Documentation**
+   
+8. **LOGIN Module**
+   
+9.  **Email Module**
 
-6. **Request Validation**
 
-7. **Customizable Mail Templates**
 
-8. **Swagger API Documentation**
 
-9. **Security Techniques**
-
-10. **Logger**
 
 ## Getting Started
 

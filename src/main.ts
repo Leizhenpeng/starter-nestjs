@@ -25,6 +25,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   app.use(requestIp.mw());
+  const prefix = process.env.API_PREFIX || '/v1';
+  app.setGlobalPrefix(prefix);
 
   // Helmet Middleware against known security vulnerabilities
   app.use(helmet());
@@ -35,6 +37,7 @@ async function bootstrap() {
   if (!isProduction()) {
     {
       const options = new DocumentBuilder()
+        .setBasePath(prefix)
         .setTitle(config.swagger.info.title)
         .setDescription(config.swagger.info.description)
         .setVersion(config.swagger.info.version)
@@ -49,7 +52,7 @@ async function bootstrap() {
   const url = await app.getUrl();
 
   loggerInit.log(`Now env of app : ${process.env.NODE_ENV}`);
-  loggerInit.log(`Application is running on: ${url}`);
+  loggerInit.log(`Application is running on: ${url}${prefix}`);
 
   if (!isProduction()) {
     loggerInit.log(
